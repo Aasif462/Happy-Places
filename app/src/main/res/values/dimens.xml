@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="edt_margin">24dp</dimen>
+    <dimen name="buttonRadius">10dp</dimen>
+    <dimen name="floatingButtonRadius">16dp</dimen>
+    <dimen name="frameLayoutMargin">32dp</dimen>
+    <dimen name="addImageTxt">20sp</dimen>
+    <dimen name="saveBtnTxt">16sp</dimen>
+    <dimen name="saveBtnPadding">15dp</dimen>
+    <dimen name="profileImageMargin">16dp</dimen>
+    <dimen name="selectActionTxt">24sp</dimen>
+    <dimen name="selectActionMargin">20dp</dimen>
+    <dimen name="selectFromGalleryMargin">10dp</dimen>
+</resources>
