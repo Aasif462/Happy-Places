@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/drawable-v24/background_search_ripple.xml" value="0.2425" />
+        <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/drawable-v24/background_serach.xml" value="0.2425" />
+        <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/drawable-v24/shape_image_view_border.xml" value="0.2425" />
         <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/drawable/framelayout_background.xml" value="0.2425" />
         <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/layout/activity_add_happy_places.xml" value="0.23645833333333333" />
+        <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/layout/activity_details.xml" value="0.17734375" />
         <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
         <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/layout/imagepicker_dialog_layout.xml" value="0.23645833333333333" />
         <entry key="..\:/Android from Start to End/HappyPlaces/app/src/main/res/layout/places_layout.xml" value="0.2" />

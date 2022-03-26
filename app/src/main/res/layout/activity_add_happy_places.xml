@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddHappyPlaces">
+    tools:context=".activities.activities.AddHappyPlaces">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -89,62 +89,55 @@
             android:hint="Location" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/placeImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/frameLayoutMargin"
-        android:background="@drawable/framelayout_background"
+        android:layout_width="@dimen/add_screen_place_image_size"
+        android:layout_height="@dimen/add_screen_place_image_size"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_image_view_border"
+        android:padding="@dimen/add_screen_place_image_padding"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_screen_image_placeholder"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintEnd_toStartOf="@+id/addImageTxt"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/addImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/gallary"
-                app:tint="#8C8C8C" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        app:layout_constraintVertical_bias="0.378" />
 
     <TextView
         android:id="@+id/addImageTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="108dp"
         android:onClick="onClick"
         android:text="Add Image"
         android:textColor="#3F51B5"
         android:textSize="@dimen/addImageTxt"
         app:layout_constraintBottom_toBottomOf="@+id/placeImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toEndOf="@+id/placeImage"
         app:layout_constraintTop_toTopOf="@+id/placeImage"
-        app:layout_constraintVertical_bias="0.506"
+        app:layout_constraintVertical_bias="0.52"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/saveBtn"
+        style="@style/saveBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/edt_margin"
         android:padding="@dimen/saveBtnPadding"
         android:text="Save"
-        style="@style/saveBtn"
         android:textSize="@dimen/saveBtnTxt"
         app:cornerRadius="@dimen/buttonRadius"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/placeImage" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
