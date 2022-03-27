@@ -46,7 +46,32 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context , DB_NAME , nu
         cv.put(LONGITUDE,p.longitude)
 
         val flag=db.insert(TB_NAME,null , cv)
+        db.close()
         return flag
+    }
+
+    fun update(p:HappyPlacesModel):Int
+    {
+        val db=writableDatabase
+        val cv= ContentValues()
+        cv.put(TITLE,p.title)
+        cv.put(IMAGE,p.image)
+        cv.put(DESC,p.desc)
+        cv.put(DATE,p.date)
+        cv.put(LOCATION,p.location)
+        cv.put(LATITUDE,p.latitude)
+        cv.put(LONGITUDE,p.longitude)
+
+        val success = db.update(TB_NAME , cv , ID + "=" + p.id , null)
+        db.close()
+        return success
+    }
+
+    fun delete(happyPlacesModel: HappyPlacesModel):Int{
+        val db=writableDatabase
+        val delete = db.delete(TB_NAME , ID + "=" + happyPlacesModel.id  , null)
+        db.close()
+        return delete
     }
 
 

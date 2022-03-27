@@ -14,8 +14,8 @@ class DetailsActivity : AppCompatActivity() {
 
         var happyPlacesDetailModel:HappyPlacesModel?=null
 
-        if(intent.hasExtra(MainActivity.EXTRA_PLACES_DETAILD)){
-            happyPlacesDetailModel = intent.getParcelableExtra(MainActivity.EXTRA_PLACES_DETAILD)
+        if(intent.hasExtra(MainActivity.EXTRA_PLACES_DETAILED)){
+            happyPlacesDetailModel = intent.getParcelableExtra(MainActivity.EXTRA_PLACES_DETAILED)
         }
 
         if(happyPlacesDetailModel!=null){

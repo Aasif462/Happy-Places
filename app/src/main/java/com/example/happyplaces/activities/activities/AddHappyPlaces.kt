@@ -43,10 +43,10 @@ class AddHappyPlaces : AppCompatActivity() , View.OnClickListener {
 
     private var calendar = Calendar.getInstance()
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
-//    private lateinit var saveImagetoInternal:Uri
     private var mLatitude = 0.0
     private var mLongitude = 0.0
     private var saveImageToInternalStorage: Uri? = null
+    private var mHappyPlacesDetails:HappyPlacesModel ?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +61,10 @@ class AddHappyPlaces : AppCompatActivity() , View.OnClickListener {
             onBackPressed()
         }
 
+        if(intent.hasExtra(MainActivity.EXTRA_PLACES_DETAILED)){
+            mHappyPlacesDetails = intent.getParcelableExtra(MainActivity.EXTRA_PLACES_DETAILED)
+        }
+
         dateSetListener = DatePickerDialog.OnDateSetListener{
             view , year , month , dayOfMonth ->
             calendar.set(Calendar.YEAR , year)
@@ -70,44 +74,58 @@ class AddHappyPlaces : AppCompatActivity() , View.OnClickListener {
 
         }
         displayDate()
+
+        if(mHappyPlacesDetails != null){
+            supportActionBar!!.title = "Edit Happy Place"
+            titleEdt.setText(mHappyPlacesDetails!!.title)
+            descEdt.setText(mHappyPlacesDetails!!.desc)
+            dateEdt.setText(mHappyPlacesDetails!!.date)
+            locationEdt.setText(mHappyPlacesDetails!!.location)
+            mLatitude = mHappyPlacesDetails!!.latitude
+            mLongitude = mHappyPlacesDetails!!.longitude
+
+            saveImageToInternalStorage = Uri.parse(mHappyPlacesDetails!!.image)
+            placeImage.setImageURI(saveImageToInternalStorage)
+            saveBtn.text = "UPDATE"
+        }
+
         dateEdt.setOnClickListener(this)
         placeImage.setOnClickListener(this)
         saveBtn.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
-        when(view!!.id){
-            R.id.dateEdt ->
-            {
-                DatePickerDialog(this@AddHappyPlaces ,
-                    dateSetListener
-                    , calendar.get(Calendar.YEAR)
-                    , calendar.get(Calendar.MONTH)
-                    ,calendar.get(Calendar.DAY_OF_MONTH)).show()
+        when(view!!.id) {
+            R.id.dateEdt -> {
+                DatePickerDialog(
+                    this@AddHappyPlaces,
+                    dateSetListener,
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+                ).show()
             }
 
-            R.id.addImageTxt ->
-            {
+            R.id.addImageTxt -> {
                 val dialog = AlertDialog.Builder(this)
                 dialog.setTitle("Select Action")
-                val pictureDialogItems = arrayOf("Select Photo From Gallery" , "Capture Photo From Camara")
-                dialog.setItems(pictureDialogItems){
-                    dialog,which ->
-                    when(which){
+                val pictureDialogItems =
+                    arrayOf("Select Photo From Gallery", "Capture Photo From Camara")
+                dialog.setItems(pictureDialogItems) { dialog, which ->
+                    when (which) {
                         0 -> choosePhotoFromGallery()
                         1 -> choosePhotoFromCamara()
                     }
                 }
                 dialog.show()
             }
-            R.id.saveBtn ->
-            {
+            R.id.saveBtn -> {
                 val checkValues = checkValues()
-                if(checkValues){
+                if (checkValues) {
                     insertData()
-                    startActivity(Intent(applicationContext , MainActivity::class.java))
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                     finish()
-                }
+                    }
             }
         }
     }
@@ -289,14 +307,27 @@ class AddHappyPlaces : AppCompatActivity() , View.OnClickListener {
         val location = locationEdt.text.toString()
         val image = saveImageToInternalStorage.toString()
 
-        val items = HappyPlacesModel(title , image , desc,date,location, mLatitude, mLongitude )
+        val items = HappyPlacesModel(
+            if (mHappyPlacesDetails==null) 0
+            else mHappyPlacesDetails!!.id,
+                title , image , desc,date,location, mLatitude, mLongitude )
         val db = DatabaseHelper(applicationContext)
-        val flag = db.insert(items)
 
-        if(flag > 0){
-            Toast.makeText(applicationContext, "Insert Successfully", Toast.LENGTH_SHORT).show()
+        if(mHappyPlacesDetails == null){
+            val flag = db.insert(items)
+            if(flag > 0){
+                Toast.makeText(applicationContext, "Insert Successfully", Toast.LENGTH_SHORT).show()
+            }
+        }
+        else{
+            val success = db.update(items)
+
+            if(success > 0){
+                Toast.makeText(applicationContext, "Update Successfully", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
 
     private fun checkValues() : Boolean{
         var check:Boolean = false

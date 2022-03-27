@@ -5,6 +5,7 @@ import android.os.Parcelable
 import java.io.Serializable
 
 data class HappyPlacesModel(
+    val id:Int,
     val title:String?,
     val image:String?,
     val desc:String?,
@@ -12,11 +13,9 @@ data class HappyPlacesModel(
     val location:String?,
     val latitude:Double,
     val longitude:Double
-):Parcelable
-{
-    var id = 0
-
+):Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -25,14 +24,10 @@ data class HappyPlacesModel(
         parcel.readDouble(),
         parcel.readDouble()
     ) {
-        id = parcel.readInt()
     }
 
-    constructor(id :Int , title:String , image:String , desc:String , date: String
-                ,location: String,latitude: Double,longitude: Double)
-            :this(title , image , desc , date , location , latitude,longitude)
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(title)
         parcel.writeString(image)
         parcel.writeString(desc)
@@ -40,7 +35,6 @@ data class HappyPlacesModel(
         parcel.writeString(location)
         parcel.writeDouble(latitude)
         parcel.writeDouble(longitude)
-        parcel.writeInt(id)
     }
 
     override fun describeContents(): Int {
