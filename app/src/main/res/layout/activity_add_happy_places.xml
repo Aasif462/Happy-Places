@@ -80,14 +80,35 @@
         android:layout_margin="@dimen/edt_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/locationEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location" />
+            android:hint="Location"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/selectCurrentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/edt_margin"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/currentlocation_background"
+        android:drawableStart="@drawable/location"
+        android:foreground="?attr/selectableItemBackground"
+
+        android:padding="15dp"
+        android:text="SELECT CURRENT LOCATION"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/placeImage"
@@ -105,8 +126,7 @@
         app:layout_constraintEnd_toStartOf="@+id/addImageTxt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
-        app:layout_constraintVertical_bias="0.378" />
+        app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
 
     <TextView
         android:id="@+id/addImageTxt"

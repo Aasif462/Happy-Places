@@ -2,4 +2,5 @@
     <string name="app_name">Happy Places</string>
     <string name="select_action">Select Action</string>
     <string name="select_from_gallery">Select Photo From Gallery</string>
+    <string name="google_maps_api_key">"AIzaSyBWPmm-YJ-K9-kQHk18SGSOcVt2gk0Q7T8"</string>
 </resources>
